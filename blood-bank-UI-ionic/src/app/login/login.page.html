@@ -1,0 +1,36 @@
+<ion-content>
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>Login to System</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <form [formGroup]="form">
+    <ion-item>
+      <ion-label position="floating">Username</ion-label>
+      <ion-input type="text" formControlName="username" maxlength="25"></ion-input>
+      <!-- <p *ngIf="form.controls['username'].errors && form.controls['username'].dirty" class="danger" padding>username is required.</p> -->
+      <div class="validation-errors">
+        <div class="error-message"
+          *ngIf="form.get('username').hasError('required') && (form.get('username').dirty || form.get('username').touched || (!form.valid && submitted))">
+          {{ validation_messages }}
+        </div>
+      </div>
+    </ion-item>
+    <ion-item>
+      <ion-label position="floating">Password</ion-label>
+      <ion-input type="password" formControlName="pwd"></ion-input>
+      <div class="validation-errors">
+        <div class="error-message"
+          *ngIf="form.get('pwd').hasError('required') && (form.get('pwd').dirty || form.get('pwd').touched || (!form.valid && submitted))">
+          {{ validation_messages }}
+        </div>
+      </div>
+    </ion-item>
+
+    <ion-button type="submit" color="danger" (click)="onSubmit()">
+      Login
+    </ion-button>
+  </form>
+
+</ion-content>

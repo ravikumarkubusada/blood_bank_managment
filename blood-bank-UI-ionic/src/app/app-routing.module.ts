@@ -12,8 +12,12 @@ const routes: Routes = [
     loadChildren: () => import('./listing/listing.module').then( m => m.ListingPageModule)
   },
   {
-    path: 'details/:mode',
+    path: 'details/:mode/:id',
     loadChildren: () => import('./details/details.module').then( m => m.DetailsPageModule)
+  },
+  {
+    path: 'login',
+    loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
 ];
 

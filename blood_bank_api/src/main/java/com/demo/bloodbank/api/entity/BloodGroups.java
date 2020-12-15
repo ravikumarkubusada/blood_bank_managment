@@ -25,4 +25,5 @@ public class BloodGroups implements Serializable {
 	private Long id;
 	
 	private String name;
+	
 }

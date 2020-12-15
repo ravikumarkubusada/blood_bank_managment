@@ -1,16 +1,19 @@
 <ion-content>
   <ion-grid>
     <ion-row>
-      <ion-col size="6" style="text-align: center; ">
+      <ion-col size="6" style="text-align: center;" offset="2">
         <p> You dont have Money in your pocket ?</p>
         <p> Still You can save someone's</p>
         <ion-button color="danger">
           Life
         </ion-button>
-        <p>#GiveBlood #SaveLife</p>
-      </ion-col>
-      <ion-col size="6">
-        <!-- <ion-img src="assets/images/bg-1.jpg" height="400px"></ion-img> -->
+        <ion-chip>
+          #GiveBlood
+        </ion-chip>
+        <ion-chip>
+          #SaveLife
+        </ion-chip>
+
         <div class="heart-rate">
           <svg version="1.0" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px"
             y="0px" width="150px" height="73px" viewBox="0 0 150 73" enable-background="new 0 0 150 73"
@@ -27,11 +30,12 @@
 
   <ion-grid>
     <ion-row>
-      <ion-col size="8">
-        <ion-searchbar showCancelButton="focus"></ion-searchbar>
+      <ion-col size="8" size-md>
+        <ion-searchbar showCancelButton="focus" placeholder="Search Blood Group (Ex:B+, O+,.)" (change)="search()"
+          [(ngModel)]="searchText"></ion-searchbar>
       </ion-col>
       <ion-col>
-        <ion-button type="button" color="primary" class="ion-float-right" routerLink="/details/Add">
+        <ion-button type="button" color="primary" class="ion-float-right" routerLink="/details/add/0">
           <ion-icon name="add-circle-outline"></ion-icon>
           Donate
         </ion-button>
@@ -39,21 +43,38 @@
     </ion-row>
   </ion-grid>
 
-
   <ion-grid>
     <ion-row>
-      <ion-col size="3">
-        <ion-card *ngFor="let donar of data">
+      <ion-col size="4" *ngFor="let donar of data">
+        <ion-card>
           <ion-card-header class="card-header">
             <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
-            <ion-card-title>AB+</ion-card-title>
+            <ion-card-title>{{donar.bloodGroup.name}}
+            </ion-card-title>
 
+            <ion-icon class="ion-float-right edit-btn" name="create-outline"
+              routerLink="/details/edit/{{donar.donarId}}">
+            </ion-icon>
+
+            <ion-card-subtitle style="color: white;">
+              On : {{donar.updatedOn | date: 'medium'}}
+            </ion-card-subtitle>
           </ion-card-header>
           <ion-card-content>
-            Keep close to Nature's heart... and break clear away, once in awhile,
-            and climb a mountain or spend a week in the woods. Wash your spirit clean.
+            <ion-item>
+              <ion-label position="fixed">First Name: </ion-label>
+              <ion-input value="{{donar.firstName}}" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Last Name: </ion-label>
+              <ion-input value="{{donar.lastName}}" readonly></ion-input>
+            </ion-item>
+            <ion-item>
+              <ion-label position="fixed">Age: </ion-label>
+              <ion-input value="{{donar.age}}" readonly></ion-input>
+            </ion-item>
           </ion-card-content>
-          <ion-badge color="primary">Edit</ion-badge>
+          <ion-button expand="block" routerLink="/details/view/{{donar.donarId}}">View Details</ion-button>
         </ion-card>
       </ion-col>
     </ion-row>

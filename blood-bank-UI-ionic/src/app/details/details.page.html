@@ -1,37 +1,59 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>{{mode}} Donar's Details</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
-  <form onsubmit="">
+  <ion-header>
+    <ion-toolbar>
+      <ion-title>{{mode}} Donar's Details</ion-title>
+      <ion-button color="dark" (click)="onDelete()" *ngIf="mode ==='edit'" class="float-right">Delete</ion-button>
+    </ion-toolbar>
+  </ion-header>
+  <form [formGroup]="form">
     <ion-item>
       <ion-label position="floating">Donar's First Name</ion-label>
-      <ion-input required></ion-input>
+      <ion-input type="text" formControlName="firstName" maxlength="25"></ion-input>
+      <!-- <p *ngIf="form.controls['firstName'].errors && form.controls['firstName'].dirty" class="danger" padding>FirstName is required.</p> -->
+      <div class="validation-errors">
+        <div class="error-message"
+          *ngIf="form.get('firstName').hasError('required') && (form.get('firstName').dirty || form.get('firstName').touched || (!form.valid && submitted))">
+          {{ validation_messages }}
+        </div>
+      </div>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Donar's Last Name</ion-label>
-      <ion-input required></ion-input>
+      <ion-input type="text" formControlName="lastName"></ion-input>
+      <div class="validation-errors">
+        <div class="error-message"
+          *ngIf="form.get('lastName').hasError('required') && (form.get('lastName').dirty || form.get('lastName').touched || (!form.valid && submitted))">
+          {{ validation_messages }}
+        </div>
+      </div>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Donar's Age</ion-label>
-      <ion-input type="number" required></ion-input>
+      <ion-input type="number" formControlName="age"></ion-input>
+      <div class="validation-errors">
+        <div class="error-message"
+          *ngIf="form.get('age').hasError('required') && (form.get('age').dirty || form.get('age').touched || (!form.valid && submitted))">
+          {{ validation_messages }}
+        </div>
+      </div>
     </ion-item>
     <ion-item>
       <ion-label position="floating">Donar's Blood group</ion-label>
-      <ion-select value="brown" okText="Okay" cancelText="Dismiss" required>
-        <ion-select-option value="brown">Brown</ion-select-option>
-        <ion-select-option value="blonde">Blonde</ion-select-option>
-        <ion-select-option value="black">Black</ion-select-option>
-        <ion-select-option value="red">Red</ion-select-option>
+      <ion-select [compareWith]="compareWith" okText="Okay" cancelText="Dismiss" formControlName="bloodGroup">
+        <ion-select-option [value]="obj" *ngFor="let obj of bloodGrpsObj">{{obj.name}}</ion-select-option>
       </ion-select>
+      <div class="validation-errors">
+        <div class="error-message"
+          *ngIf="form.get('bloodGroup').hasError('required') && (form.get('bloodGroup').dirty || form.get('bloodGroup').touched || (!form.valid && submitted))">
+          {{ validation_messages }}
+        </div>
+      </div>
     </ion-item>
     <ion-button type="button" color="light" routerLink="">
-      Not now
+      {{mode !== 'view'? 'Not now': 'Close'}}
     </ion-button>
-    <ion-button type="submit" color="danger">
-      Donate
+    <ion-button type="submit" color="danger" (click)="onSubmit()" *ngIf="mode !== 'view'">
+      {{mode === 'edit'?'Update':'Donate'}}
     </ion-button>
   </form>
 </ion-content>

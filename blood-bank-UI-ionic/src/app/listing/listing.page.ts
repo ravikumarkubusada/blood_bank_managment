@@ -8,6 +8,7 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ListingPage implements OnInit {
   data: any;
+  searchText: string;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
@@ -19,6 +20,13 @@ export class ListingPage implements OnInit {
       this.data = res;
     });
 
+  }
+
+  search() {
+    const grps = this.searchText.split(',');
+    this.data = this.data.filter(function(itm){
+      return grps.indexOf(itm.bloodGroupId) > -1;
+    });
   }
 
 }

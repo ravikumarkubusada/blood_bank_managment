@@ -3,10 +3,14 @@ package com.demo.bloodbank.api.entity;
 import java.io.Serializable;
 import java.time.LocalDateTime;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
+
+import org.hibernate.annotations.UpdateTimestamp;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -26,13 +30,17 @@ public class Donars implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "Person_id")
-	private Long personId;
+	@Column(name = "Donar_id")
+	private Long donarId;
 
-	private String lastName;
 	private String firstName;
+	private String lastName;
 	private int age;
-	private int bloodGroupId;
+
+	@OneToOne(cascade = CascadeType.ALL)
+	private BloodGroups bloodGroup;
+
+	@UpdateTimestamp
 	private LocalDateTime updatedOn;
 
 }

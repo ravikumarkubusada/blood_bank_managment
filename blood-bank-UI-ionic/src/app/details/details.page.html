@@ -2,7 +2,13 @@
   <ion-header>
     <ion-toolbar>
       <ion-title>{{mode}} Donar's Details</ion-title>
-      <ion-button color="dark" (click)="onDelete()" *ngIf="mode ==='edit'" class="float-right">Delete</ion-button>
+      <ion-buttons slot="secondary" *ngIf="mode ==='edit'" (click)="onDelete()">
+        <ion-button color="dark">
+          Delete
+        </ion-button>
+        
+      </ion-buttons>
+      <!-- <ion-button color="dark"  class="ion-float-right" >Delete</ion-button> -->
     </ion-toolbar>
   </ion-header>
   <form [formGroup]="form">
@@ -49,10 +55,10 @@
         </div>
       </div>
     </ion-item>
-    <ion-button type="button" color="light" routerLink="">
+    <ion-button type="button" color="light" routerLink="" class="ion-float-right">
       {{mode !== 'view'? 'Not now': 'Close'}}
     </ion-button>
-    <ion-button type="submit" color="danger" (click)="onSubmit()" *ngIf="mode !== 'view'">
+    <ion-button type="submit" color="danger" (click)="onSubmit()" *ngIf="mode !== 'view'" >
       {{mode === 'edit'?'Update':'Donate'}}
     </ion-button>
   </form>

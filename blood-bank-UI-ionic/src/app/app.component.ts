@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { MenuController, Platform } from '@ionic/angular';
-import { SplashScreen } from '@ionic-native/splash-screen/ngx';
-import { StatusBar } from '@ionic-native/status-bar/ngx';
 
 @Component({
   selector: 'app-root',
@@ -10,10 +8,15 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private menu: MenuController) { }
-
+  constructor(private route: Router) { }
+  user= null;
 
   ngOnInit() {
+    this.user = localStorage.getItem('usr');
+    console.log(this.user);
+  }
 
+  logout() {
+    this.route.navigateByUrl('/login');
   }
 }

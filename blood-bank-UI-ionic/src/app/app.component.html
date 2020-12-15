@@ -1,22 +1,23 @@
 <ion-app>
-  <ion-header [translucent]="true" routerLink="" style="cursor: pointer;">
+  <ion-header [translucent]="true">
     <ion-toolbar color="danger">
       <ion-title>
         Bood System
         <ion-icon name="heart-half-outline"></ion-icon>
       </ion-title>
-      <ion-buttons slot="secondary">
+      <ion-buttons slot="secondary" *ngIf="user!=null">
         <ion-button>
           <ion-icon slot="icon-only" name="person-circle"></ion-icon>
         </ion-button>
-        <ion-select interface="popover">
-          <ion-select-option value="nes">NES</ion-select-option>
-          <ion-select-option value="n64">Nintendo64</ion-select-option>
-          <ion-select-option value="ps">PlayStation</ion-select-option>
-          <ion-select-option value="genesis">Sega Genesis</ion-select-option>
-          <ion-select-option value="saturn">Sega Saturn</ion-select-option>
-          <ion-select-option value="snes">SNES</ion-select-option>
+        <ion-select interface="action-sheet" value='name'>
+          <ion-select-option value='name'>Hi {{user}}</ion-select-option>
+          <ion-select-option routerLink="/login">Logout</ion-select-option>
         </ion-select>
+      </ion-buttons>
+      <ion-buttons slot="secondary" *ngIf="user === null">
+        <ion-button routerLink="login">
+          Login
+        </ion-button>
       </ion-buttons>
     </ion-toolbar>
   </ion-header>

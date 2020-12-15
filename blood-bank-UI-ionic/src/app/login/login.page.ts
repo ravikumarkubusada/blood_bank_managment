@@ -29,7 +29,7 @@ export class LoginPage implements OnInit {
     this.submitted = true;
     if (this.form.valid) {
       if (this.form.value.username.toLowerCase() === 'admin' && this.form.value.pwd === 'pwd') {
-        localStorage.setItem('user', 'admin');
+        localStorage.setItem('usr', 'admin');
         this.route.navigateByUrl('');
       } else {
         this.invalidUserAlert('Invalid User');

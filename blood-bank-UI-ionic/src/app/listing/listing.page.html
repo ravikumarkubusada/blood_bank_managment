@@ -17,10 +17,10 @@
           <div class="fade-in"></div>
           <div class="fade-out"></div>
         </div>
-        <ion-chip color="primary" outline >
+        <ion-chip color="primary" outline>
           <ion-label>#GiveBlood</ion-label>
         </ion-chip>
-        <ion-chip color="primary" outline >
+        <ion-chip color="primary" outline>
           <ion-label>#SaveLife</ion-label>
         </ion-chip>
       </ion-col>
@@ -48,28 +48,18 @@
         <ion-card>
           <ion-card-header class="card-header">
             <!-- <ion-card-subtitle>Card Subtitle</ion-card-subtitle> -->
-            <ion-card-title>{{donar.bloodGroup.name}}
+            <ion-card-title>{{donar.bloodGroup.name}} Ve
             </ion-card-title>
 
             <!-- <ion-icon class="ion-float-right edit-btn" name="create-outline"
               routerLink="/details/edit/{{donar.donarId}}">
             </ion-icon> -->
 
-            <ion-fab edge class="ion-float-right edit-btn" routerLink="/details/edit/{{donar.donarId}}">
-              <ion-fab-button color="light">
+            <ion-fab edge class="ion-float-right edit-btn" routerLink="/details/edit/{{donar.donarId}}"
+              *ngIf="isUserLoggedIn">
+              <ion-fab-button color="light" size="small">
                 <ion-icon name="create-outline"></ion-icon>
               </ion-fab-button>
-              <!-- <ion-fab-list>
-                <ion-fab-button color="light">
-                  hi
-                </ion-fab-button>
-                <ion-fab-button color="light">
-                  <ion-icon name="logo-twitter"></ion-icon>
-                </ion-fab-button>
-                <ion-fab-button color="light">
-                  <ion-icon name="logo-vimeo"></ion-icon>
-                </ion-fab-button>
-              </ion-fab-list> -->
             </ion-fab>
 
             <ion-card-subtitle style="color: white;">

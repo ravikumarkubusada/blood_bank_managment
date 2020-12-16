@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,8 @@ export class LoginPage implements OnInit {
 
   constructor(private formBuilder: FormBuilder,
     public alertController: AlertController,
-    private route: Router) { }
+    private route: Router,
+    private auth: AuthService) { }
 
   ngOnInit() {
     localStorage.clear();
@@ -29,7 +31,7 @@ export class LoginPage implements OnInit {
     this.submitted = true;
     if (this.form.valid) {
       if (this.form.value.username.toLowerCase() === 'admin' && this.form.value.pwd === 'pwd') {
-        localStorage.setItem('usr', 'admin');
+        this.auth.setUser(this.form.value.username.toUpperCase());
         this.route.navigateByUrl('');
       } else {
         this.invalidUserAlert('Invalid User');

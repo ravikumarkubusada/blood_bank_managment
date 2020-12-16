@@ -11,7 +11,7 @@
         </ion-button>
         <ion-select interface="action-sheet" value='name'>
           <ion-select-option value='name'>Hi {{user}}</ion-select-option>
-          <ion-select-option routerLink="/login">Logout</ion-select-option>
+          <ion-select-option value='' routerLink="/login">Logout</ion-select-option>
         </ion-select>
       </ion-buttons>
       <ion-buttons slot="secondary" *ngIf="user === null">

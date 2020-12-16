@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { AuthService } from '../services/auth/auth.service';
 
 @Component({
   selector: 'app-listing',
@@ -9,10 +10,13 @@ import { HttpClient } from '@angular/common/http';
 export class ListingPage implements OnInit {
   data: any;
   searchText: string;
-  constructor(private http: HttpClient) { }
+  isUserLoggedIn = false;
+  constructor(private http: HttpClient, private auth: AuthService
+  ) { }
 
   ngOnInit() {
     this.getAlldata();
+    this.isUserLoggedIn = this.auth.isUserLoggedIn();
   }
 
   getAlldata() {
@@ -24,7 +28,7 @@ export class ListingPage implements OnInit {
 
   search() {
     const grps = this.searchText.split(',');
-    this.data = this.data.filter(function(itm){
+    this.data = this.data.filter(function (itm) {
       return grps.indexOf(itm.bloodGroupId) > -1;
     });
   }

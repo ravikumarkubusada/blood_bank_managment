@@ -1,12 +1,11 @@
 <ion-content>
   <ion-header>
     <ion-toolbar>
-      <ion-title>{{mode}} Donar's Details</ion-title>
+      <ion-title> <span style="text-transform: capitalize">{{mode}} </span>Donar's Details</ion-title>
       <ion-buttons slot="secondary" *ngIf="mode ==='edit'" (click)="onDelete()">
         <ion-button color="dark">
           Delete
         </ion-button>
-        
       </ion-buttons>
       <!-- <ion-button color="dark"  class="ion-float-right" >Delete</ion-button> -->
     </ion-toolbar>

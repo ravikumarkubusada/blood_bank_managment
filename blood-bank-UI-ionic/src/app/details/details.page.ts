@@ -3,8 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {
   FormGroup,
   FormBuilder,
-  Validators,
-  FormControl
+  Validators
 } from '@angular/forms';
 import { ActivatedRoute, Route, Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';

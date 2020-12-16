@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthService } from './services/auth/auth.service';
 
 
 @Component({
@@ -8,12 +9,12 @@ import { Router } from '@angular/router';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent implements OnInit {
-  constructor(private route: Router) { }
+  constructor(private route: Router, private auth: AuthService) { }
   user= null;
 
   ngOnInit() {
-    this.user = localStorage.getItem('usr');
-    console.log(this.user);
+   this.user = this.auth.getUser();
+   console.log(this.user);
   }
 
   logout() {

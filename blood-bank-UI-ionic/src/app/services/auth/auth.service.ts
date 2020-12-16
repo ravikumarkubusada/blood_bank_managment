@@ -20,4 +20,9 @@ export class AuthService {
     this.user.next(username);
     localStorage.setItem('usr', username);
   }
+
+  clear() {
+    localStorage.clear();
+    this.user.next(null);
+  }
 }

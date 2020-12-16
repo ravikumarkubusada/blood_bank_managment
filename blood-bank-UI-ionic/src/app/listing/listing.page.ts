@@ -14,7 +14,9 @@ export class ListingPage implements OnInit {
   constructor(private http: HttpClient, private auth: AuthService
   ) { }
 
-  ngOnInit() {
+  ngOnInit() { }
+
+  ionViewWillEnter() {
     this.getAlldata();
     this.isUserLoggedIn = this.auth.isUserLoggedIn();
   }

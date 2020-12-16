@@ -17,10 +17,8 @@ export class HttpInerceptorService implements HttpInterceptor {
         'Pragma': 'no-cache',
         'Expires': '0'
     })
+    
   });
-
-
-
   return next.handle(auth);
   }
 }

@@ -12,10 +12,9 @@ export class AuthService {
     this.user.next(localStorage.getItem('usr'));
     return this.user.asObservable();
   }
+
   isUserLoggedIn() {
-    this.getUser().subscribe(res => {
-      return res !== null;
-    });
+    return localStorage.getItem('usr') !== null;
   }
   setUser(username) {
     this.user.next(username);

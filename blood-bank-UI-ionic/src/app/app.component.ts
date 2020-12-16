@@ -10,11 +10,12 @@ import { AuthService } from './services/auth/auth.service';
 })
 export class AppComponent implements OnInit {
   constructor(private route: Router, private auth: AuthService) { }
-  user= null;
+  user = null;
 
   ngOnInit() {
-   this.user = this.auth.getUser();
-   console.log(this.user);
+    this.auth.getUser().subscribe(res => {
+      this.user = res;
+    });
   }
 
   logout() {

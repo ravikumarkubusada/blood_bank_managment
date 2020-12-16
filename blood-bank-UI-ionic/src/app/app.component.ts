@@ -13,12 +13,25 @@ export class AppComponent implements OnInit {
   user = null;
 
   ngOnInit() {
-    this.auth.getUser().subscribe(res => {
-      this.user = res;
-    });
+    this.user = localStorage.getItem('usr');
+    if (this.user === null) {
+      this.auth.getUser().subscribe(res => {
+        this.user = res;
+      });
+    }
   }
 
+  // ionViewWillEnter() {
+  //   this.user = localStorage.getItem('usr');
+  //   if (this.user === null) {
+  //     this.auth.getUser().subscribe(res => {
+  //       this.user = res;
+  //     });
+  //   }
+  // }
+
   logout() {
+    this.user = null;
     this.auth.clear();
     this.route.navigateByUrl('/login');
   }

@@ -29,6 +29,11 @@ export class ListingPage implements OnInit {
   }
 
   search() {
+    // console.log(this.searchText);
+
+    if(this.searchText === '') {
+      this.getAlldata();
+    }
     const grps = this.searchText.toUpperCase().split(',');
     this.data = this.data.filter(function (itm) {
       return grps.indexOf(itm.bloodGroup.name) > -1;
